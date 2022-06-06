@@ -76,16 +76,13 @@ function editTask(task) {
   task.classList.add("editing");
   let taskInputField = task.querySelectorAll(".edit")[0];
 
-  // Focus input field on double click
   taskInputField.focus();
 
   taskInputField.addEventListener("keypress", (e) => {
-    // Get current task index in format task-x
     let currentIndex = task.id.split("-")[1];
 
     if (e.key === "Enter") {
       if (!taskInputField.value) {
-        // Remove task if user input is empty
         deleteTask(currentIndex);
       } else {
         tasks = getTaskfromStorage()
@@ -95,7 +92,6 @@ function editTask(task) {
 
       task.classList.remove("editing");
 
-      // Re-render tasks
       renderTasks(tasks);
     }
   });
