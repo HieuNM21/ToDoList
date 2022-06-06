@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TodoMVC</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<!-- CSS overrides - remove if you don't need it -->
+	<link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+	<section class="todoapp">
+		<header class="header">
+			<h1>todos</h1>
+			<input class="new-todo" placeholder="What needs to be done?" autofocus
+				onkeyup="event.keyCode === 13 && addTask()">
+			
+		</header>
+		<!-- This section should be hidden by default and shown when there are todos -->
+		<section class="main">
+			
+		</section>
+		<!-- This footer should hidden by default and shown when there are todos -->
+		<footer class="footer" id="footer">
+			
+			<!-- Remove this if you don't implement routing -->
+			<ul class="filters">
+				<li>
+					<a class="selected" href="#/selected">All</a>
+				</li>
+				<li>
+					<a class="active" href="#/active" >Active</a>
+				</li>
+				<li>
+					<a class="comp" href="#/completed" >Completed</a>
+				</li>
+			</ul>
+			<!-- Hidden if no completed items are left ↓ -->
+			<button class="clear-completed" onclick="clearAll()">Clear All</button>
+		</footer>
+	</section>
+	<footer class="info">
+		<p>Double-click to edit a todo</p>
+	</footer>
+	<!-- Scripts here. Don't remove ↓ -->
+	<script src="main.js"></script>
+	
+</body>
+
+</html>
