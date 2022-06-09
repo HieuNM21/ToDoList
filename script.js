@@ -102,22 +102,69 @@ function deleteTask(id) {
 }
 
 function toggle(id) { 
-  var option = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      completed: true
-    })
-  };
-  fetch(apiUrl + '/' + id, option)
-    .then(function (response) {
-      response.json();
-    })
-    .then(function() {
+  var toggle = document.getElementById(id).querySelector('.toggle')
+  console.log(toggle)
+  var tasks = getTasks(tasks);
+  console.log(tasks)
+  // var option = {
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({
+  //     completed: true
+  //   })
+  // };
+  // fetch(apiUrl + '/' + id, option)
+  //   .then(function (response) {
+  //     response.json();
+  //   })
+  //   .then(function() {
+  //     getTasks(function (tasks) {
+  //       renderTasks(tasks);
+  //     })
+  //   });
+}
+
+function editTask(task) {
+  task.classList.add("editing");
+  let taskInputField = task.querySelectorAll(".edit")[0];
+  taskInputField.focus();
+  taskInputField.addEventListener("keypress", (e) => {
+    let currentIndex = task.id.split("-")[1];
+
+    if (e.key === "Enter") {
+      if (!taskInputField.value) {
+        deleteTask(currentIndex);
+      } else {
+        // tasks = getTaskfromStorage()
+        // tasks[currentIndex].title = taskInputField.value;
+        // localStorage.setItem("tasks", JSON.stringify(tasks));
+        var option = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: taskInputField.value
+          })
+        };
+        fetch(apiUrl, option)
+          .then(function (response) {
+            response.json();
+          })
+          .then(function() {
+            getTasks(function (tasks) {
+              renderTasks(tasks);
+            })
+          });
+      }
+
+      task.classList.remove("editing");
+
       getTasks(function (tasks) {
         renderTasks(tasks);
       })
-    });
+    }
+  });
 }
