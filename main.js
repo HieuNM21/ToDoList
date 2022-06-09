@@ -146,3 +146,21 @@ function completedTask() {
     }
     renderTasks(tasksComp)
 }
+
+
+var apiUrl = 'https://62996bcd6f8c03a978428c7b.mockapi.io/todos'
+
+
+
+  function getTasks() {
+    fetch(apiUrl)
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(todos){
+      console.log(todos)
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+  }
